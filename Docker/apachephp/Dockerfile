@@ -28,6 +28,7 @@ RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 ADD sample/ /app
 
 ADD templates/xdebug.ini /etc/php5/mods-available/xdebug.ini
+ADD templates/opcache.ini /etc/php5/mods-available/opcache.ini
 ADD templates/symfony.conf /etc/apache2/sites-available/symfony.conf
 RUN a2ensite symfony
 

@@ -1,42 +1,20 @@
 VAGRANTFILE_API_VERSION = "2"
- 
+
 Vagrant.configure("2") do |config|
-  config.vm.define "mysql" do |a|
-    a.vm.provider "docker" do |d|
-	  d.build_dir = "./Docker/mysql/"
-	  d.volumes = ["/home/vagrant/mysql:/var/lib/mysql"]
-      d.ports = ["3306:3306"]
-      d.name = "mysql"
-	  d.env = {
-          MYSQL_USER: "symfony",
-          MYSQL_PASS: "symfony",
-          MYSQL_DATABASE: "symfony2"
-      }
-	  d.vagrant_machine = "dockerhost"
-	  d.vagrant_vagrantfile = "./DockerHostVagrantfile"
-    end
+  config.vm.box = "phusion/ubuntu-14.04-amd64"
+  config.vm.define "dockerhost"
+
+  config.vm.network "private_network", ip: "192.168.50.4"
+  config.vm.synced_folder "./html" , "/home/vagrant/html", :mount_options => ["dmode=777", "fmode=666"]
+  config.vm.synced_folder "./mysql" , "/home/vagrant/mysql", :mount_options => ["dmode=777", "fmode=666"]
+  config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 1080, host: 1080
+  
+  config.vm.provider :virtualbox do |vb|
+      vb.name = "dockerhost"
+	  vb.memory = 2048
+	  vb.cpus = 2
   end
 
-  config.vm.define "mailcatcher" do |a|
-      a.vm.provider "docker" do |d|
-  	  d.build_dir = "./Docker/mailcatcher/"
-      d.ports = ["1080:1080"]
-      d.name = "mailcatcher"
-  	  d.vagrant_machine = "dockerhost"
-  	  d.vagrant_vagrantfile = "./DockerHostVagrantfile"
-      end
-    end
-  
-  config.vm.define "apachephp" do |a|
-    a.vm.provider "docker" do |d|
-	  d.build_dir = "./Docker/apachephp/"
-      d.ports = ["80:80", "9015:9015"]
-	  d.volumes = ["/home/vagrant/html:/app"]
-      d.name = "apachephp"
-	  d.vagrant_machine = "dockerhost"
-	  d.link("mysql:mysql")
-	  d.link("mailcatcher:mailcatcher")
-	  d.vagrant_vagrantfile = "./DockerHostVagrantfile"
-    end
-  end
+  config.vm.provision "shell", path: "scriptDocker.sh"
 end
