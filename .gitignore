@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Symfony template
+/.idea/
+/.idea/*
+/mysql/*
+!mysql/.gitkeep
+/.vagrant/
+/.vagrant/*
+/html/TP
+/html/TP/*
+
+
