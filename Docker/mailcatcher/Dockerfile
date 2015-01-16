@@ -1,4 +1,8 @@
-FROM ruby:2
+FROM ubuntu:trusty
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get install -y ruby ruby-dev build-essential sqlite3 libsqlite3-dev
+
 # Install Mailcatcher
 RUN gem install mailcatcher --no-ri --no-rdoc
 # Workaround for i18n beta version crashing
