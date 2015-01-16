@@ -9,7 +9,8 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./mysql" , "/home/vagrant/mysql", :mount_options => ["dmode=777", "fmode=666"]
   config.vm.network "forwarded_port", guest: 80, host: 80
   config.vm.network "forwarded_port", guest: 1080, host: 1080
-  
+  config.vm.network "forwarded_port", guest: 2223, host: 2223
+
   config.vm.provider :virtualbox do |vb|
       vb.name = "dockerhost"
 	  vb.memory = 2048
