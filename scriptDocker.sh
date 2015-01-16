@@ -1,6 +1,4 @@
 #!/bin/bash
-ENV DEBIAN_FRONTEND noninteractive
-
 sudo apt-get update
 sudo curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
