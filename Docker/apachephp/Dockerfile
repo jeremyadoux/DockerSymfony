@@ -14,7 +14,8 @@ RUN apt-get update && \
         php5-curl \
 		php5-intl \
         php-pear \
-        php-apc
+        php-apc \
+        openssh-server
 		
 RUN sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2/php.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -33,7 +34,18 @@ ADD templates/symfony.conf /etc/apache2/sites-available/symfony.conf
 RUN a2ensite symfony
 
 EXPOSE 80
+EXPOSE 22
 EXPOSE 9015
+
+RUN mkdir /var/run/sshd
+RUN echo 'root:visiativ' | chpasswd
+RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# SSH login fix. Otherwise user is kicked off after login
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
 
 WORKDIR /app
 CMD ["/run.sh"]

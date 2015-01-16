@@ -45,6 +45,9 @@
         "symfony-web-dir": "web",
         "branch-alias": {
             "dev-master": "2.3-dev"
+        },
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
         }
     }
 }
