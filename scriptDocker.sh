@@ -1,6 +1,6 @@
 #!/bin/bash
-#sudo apt-get update
-#sudo curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+sudo apt-get update
+sudo curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
 sudo docker build -t tutum/apache-php /vagrant/Docker/apachephp
 sudo docker build -t tutum/mysql /vagrant/Docker/mysql
