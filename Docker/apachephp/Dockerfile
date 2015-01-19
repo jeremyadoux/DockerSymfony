@@ -31,6 +31,10 @@ ADD sample/ /app
 ADD templates/xdebug.ini /etc/php5/mods-available/xdebug.ini
 ADD templates/opcache.ini /etc/php5/mods-available/opcache.ini
 ADD templates/symfony.conf /etc/apache2/sites-available/symfony.conf
+ADD templates/php-apache.ini /etc/php5/apache2/php.ini
+ADD templates/php-cli.ini /etc/php5/cli/php.ini
+ADD templates/xdebug.ini /etc/php5/mods-available/xdebug.ini
+
 RUN a2ensite symfony
 
 EXPOSE 80
