@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "dockerhost"
 
   config.vm.network "private_network", ip: "192.168.50.4"
-  config.vm.synced_folder "./html" , "/home/vagrant/html", :mount_options => ["dmode=777", "fmode=666"]
+  #config.vm.synced_folder "./html" , "/home/vagrant/html", :mount_options => ["dmode=777", "fmode=666"]
   config.vm.synced_folder "./mysql" , "/home/vagrant/mysql", :mount_options => ["dmode=777", "fmode=666"]
   config.vm.network "forwarded_port", guest: 80, host: 80
   config.vm.network "forwarded_port", guest: 1080, host: 1080

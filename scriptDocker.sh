@@ -2,6 +2,10 @@
 sudo apt-get update
 sudo curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
+sudo mkdir /home/vagrant/html
+sudo chown -R vagrant: /home/vagrant/html
+sudo chmod -R 777 /home/vagrant/html
+
 sudo docker build -t tutum/apache-php /vagrant/Docker/apachephp
 sudo docker build -t tutum/mysql /vagrant/Docker/mysql
 sudo docker build -t visiativ/mailcatcher /vagrant/Docker/mailcatcher

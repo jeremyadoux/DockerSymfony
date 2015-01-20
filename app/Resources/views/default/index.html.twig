@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Homepage {{ name }}
+
+    <ul>
+        <li>
+            <a href="{{ path('hello_world', {'name':'robert'}) }}" >Hello robert </a>
+        </li>
+    </ul>
+{% endblock %}
