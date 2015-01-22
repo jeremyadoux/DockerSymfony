@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="game_runner" class="AppBundle\Game\GameRunner">
+            <argument type="service" id="game_context" />
+            <argument type="service" id="word_list" on-invalid="ignore" />
+        </service>
+        <service id="game_context" class="AppBundle\Game\GameContext" public="false">
+            <argument type="service" id="session" />
+        </service>
+        <service id="word_list"
+                 class="AppBundle\Game\WordList"
+                 public="false"
+                 lazy="true">
+            <call method="addLoader">
+                <argument>txt</argument>
+                <argument type="service" id="text_file_loader" />
+            </call>
+            <call method="addLoader">
+                <argument>xml</argument>
+                <argument type="service" id="xml_file_loader" />
+            </call>
+            <call method="loadDictionaries">
+                <argument>%dictionaries%</argument>
+            </call>
+        </service>
+
+        <service id="text_file_loader"
+                class="AppBundle\Game\Loader\TextFileLoader"
+                public="false" />
+        <service id="xml_file_loader"
+                 class="AppBundle\Game\Loader\XmlFileLoader"
+                 public="false" />
+        <service id="support_request_handler"
+                 class="AppBundle\Service\SupportRequestHandler">
+            <argument type="service" id="mailer" />
+            <argument>%kernel.root_dir%/Resources/screenshots</argument>
+            <argument>admin@monsite.com</argument>
+        </service>
+        <service id="game.twig.topuser"
+                 class="AppBundle\Service\TopUserHandler">
+            <tag name="twig.extension" />
+        </service>
+    </services>
+</container>

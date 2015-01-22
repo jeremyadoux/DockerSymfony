@@ -1,0 +1,11 @@
+{%  extends 'layout.html.twig' %}
+{% trans_default_domain "game" %}
+{% block body %}
+    <h2>Congratulations!</h2>
+
+    <p>
+        {% trans with {'%word%': "<strong>#{game.word}</strong>"} %}
+            game.win.message
+        {% endtrans %}
+    </p>
+{% endblock %}

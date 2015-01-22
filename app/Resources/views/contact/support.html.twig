@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% form_theme form "form_table_layout.html.twig" %}
+
+{%  block body %}
+    {{ form(form, {
+        'attr': {
+            "novalidate": "novalidate"
+        }
+    }) }}
+{% endblock %}

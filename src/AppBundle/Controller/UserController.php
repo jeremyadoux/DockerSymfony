@@ -9,6 +9,23 @@
 namespace AppBundle\Controller;
 
 
-class UserController {
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+class UserController extends Controller
+{
+    /**
+     * @param int $max
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function lastUserAction($max = 5) {
+        $users = [
+            ["username" => "Robert"],
+            ["username" => "Maurice"],
+            ["username" => "Jean"],
+            ["username" => "Albert"],
+            ["username" => "Alain"],
+        ];
+
+        return $this->render("game/lastUser.html.twig", ['users' => $users]);
+    }
 } 

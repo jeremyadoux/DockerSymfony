@@ -2,7 +2,7 @@
 
 namespace AppBundle\Game;
 
-use Sensio\Bundle\HangmanBundle\Game\Loader\LoaderInterface;
+use AppBundle\Game\Loader\LoaderInterface;
 
 interface DictionaryLoaderInterface
 {

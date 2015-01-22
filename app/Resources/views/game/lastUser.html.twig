@@ -1,0 +1,6 @@
+<h3>{{ "game.lastuser.block.title" | trans }}</h3>
+<ul>
+    {% for user in users %}
+        <li>{{ user.username }}</li>
+    {% endfor %}
+</ul>

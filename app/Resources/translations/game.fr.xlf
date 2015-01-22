@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="4e5176346ffeabd25cdc7521987d5749" resname="game.play.subtitle">
+        <source>game.play.subtitle</source>
+        <target>Trouve le mot masqué</target>
+      </trans-unit>
+      <trans-unit id="21255b8b42e559b814656fead2235d30" resname="game.play.remaining_attempt">
+        <source>game.play.remaining_attempt</source>
+        <target>[-Inf,0] Il n'y a plus d'essai restant|{1} Attention, c'est le dernier essai|]1,Inf] Il reste %count% essais restants</target>
+      </trans-unit>
+      <trans-unit id="95805a94b36dc2348a51a42f7a402b6f" resname="game.play.reset_game">
+        <source>game.play.reset_game</source>
+        <target>Démarrer une nouvelle partie</target>
+      </trans-unit>
+      <trans-unit id="437603930120d04ac0be9b0e768370db" resname="game.play.try_letter.subtitle">
+        <source>game.play.try_letter.subtitle</source>
+        <target>Choisir une lettre</target>
+      </trans-unit>
+      <trans-unit id="1dcd7d97af9a34522534310bd4fc887d" resname="game.play.try_word.subtitle">
+        <source>game.play.try_word.subtitle</source>
+        <target>Choisir un mot</target>
+      </trans-unit>
+      <trans-unit id="3bf87249b206d39b5b9eca36782c21d7" resname="game.play.word.label">
+        <source>game.play.word.label</source>
+        <target>Mot :</target>
+      </trans-unit>
+      <trans-unit id="bc5a036d0d4e73a6ac2ea6c9d61aae21" resname="game.play.submit.label">
+        <source>game.play.submit.label</source>
+        <target>Valider</target>
+      </trans-unit>
+      <trans-unit id="823ba8902993551436c5385d8d142093" resname="game.fail.message">
+        <source>game.fail.message</source>
+        <target>Vous avez perdus à cause du mot %word%</target>
+      </trans-unit>
+      <trans-unit id="332c28c25b22ce19c0a1d9d2ef502991" resname="game.win.message">
+        <source>game.win.message</source>
+        <target>Vous avez gagnés avec le mot %word%</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
