@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% trans_default_domain 'signin' %}
+
+{% block title 'signin.main_title'|trans %}
+
+{% block body %}
+
+    <h2>{{ 'signin.subtitle'|trans }}</h2>
+
+    {% if error %}
+        <p>
+            {{ error.message }}
+        </p>
+    {% endif %}
+
+    <form action="{{ path('signin_check') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="my_login" value="{{ last_username }}" />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="my_secret" />
+
+        <button type="submit">login</button>
+    </form>
+
+{% endblock %}

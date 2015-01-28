@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% form_theme form _self %}
+
+{% trans_default_domain 'signup' %}
+
+{% block _user_fullName_widget -%}
+    {% set type = type|default('text') %}
+    {{- block('form_widget_simple') -}}
+    <img src="{{ asset('images/user-16x16.png') }}" alt=""/>
+{%- endblock _user_fullName_widget %}
+
+{% block title 'signup.main_title'|trans %}
+
+{% block body %}
+
+    <h2>{{ 'signup.subtitle'|trans }}</h2>
+
+    {{
+    form(form, {
+        'attr': {
+            'novalidate': 'novalidate'
+        }
+    })
+    }}
+
+{% endblock %}

@@ -5,7 +5,7 @@ imports:
     - { resource: parameters_env.php }
 
 framework:
-    #esi:             ~
+    esi:             ~
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
@@ -30,6 +30,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        - "form_table_layout.html.twig"
+        - "hangman.html.twig"
 
 # Assetic Configuration
 assetic:
@@ -64,6 +67,7 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore
 
 # Swiftmailer Configuration
 swiftmailer:

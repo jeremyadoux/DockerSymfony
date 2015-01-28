@@ -15,6 +15,15 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SupportRequestHandlerTest extends \PHPUnit_Framework_TestCase {
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testCannotConstructIfUploadDirDoesntExistOrIsNotWritable() {
+        $mailer = new \Swift_Mailer(new \Swift_NullTransport());
+        new SupportRequestHandler($mailer, '/foo/bar', 'foo@bar.com');
+    }
+
     public function testSendSimpleSupportRequestMessage() {
         $mailer = new \Swift_Mailer(new \Swift_NullTransport());
 
@@ -56,6 +65,6 @@ class SupportRequestHandlerTest extends \PHPUnit_Framework_TestCase {
         $this->assertSame(1, $handler->handleSupportRequest($request));
         $this->assertCount(1, new \GlobIterator($target.'/*.png'));
 
-        $fs->remove(glob($target));
+        $fs->remove(glob($target.'/*.png'));
     }
 }

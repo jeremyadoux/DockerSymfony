@@ -4,6 +4,26 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
+
+        <service id="profile_access_voter" class="AppBundle\Security\ProfileAccessVoter">
+            <argument type="service" id="security.role_hierarchy"/>
+            <tag name="security.voter" />
+        </service>
+
+        <service id="user_manager" class="AppBundle\Service\UserManager">
+            <argument type="service" id="security.secure_random"/>
+            <argument type="service" id="security.password_encoder"/>
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="form.type.user" class="AppBundle\Form\Type\UserType">
+            <tag name="form.type" alias="user"/>
+        </service>
+
+        <service id="form.type.support_request" class="AppBundle\Form\Type\SupportRequestType">
+            <tag name="form.type" alias="support_request"/>
+        </service>
+
         <service id="game_runner" class="AppBundle\Game\GameRunner">
             <argument type="service" id="game_context" />
             <argument type="service" id="word_list" on-invalid="ignore" />

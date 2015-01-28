@@ -18,12 +18,14 @@ use Symfony\Component\Debug\Debug;
 }*/
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+require_once __DIR__.'/../app/AppCache.php';
 Debug::enable();
 
 require_once __DIR__.'/../app/AppKernel.php';
 
 $kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();
+$kernel = new AppCache($kernel);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

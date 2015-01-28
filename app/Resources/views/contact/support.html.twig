@@ -1,11 +1,19 @@
 {% extends 'layout.html.twig' %}
 
-{% form_theme form "form_table_layout.html.twig" %}
+{% trans_default_domain 'contact' %}
 
-{%  block body %}
-    {{ form(form, {
+{% block title 'contact.main_title'|trans %}
+
+{% block body %}
+
+    <h2>{{ 'contact.subtitle'|trans }}</h2>
+
+    {{
+    form(form, {
         'attr': {
-            "novalidate": "novalidate"
+            'novalidate': 'novalidate'
         }
-    }) }}
+    })
+    }}
+
 {% endblock %}

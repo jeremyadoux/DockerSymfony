@@ -1,0 +1,11 @@
+{% block password_widget -%}
+    {% set type = type|default('password') %}
+    {{- block('form_widget_simple') -}}
+    <img src="{{ asset('images/lock-16x16.png') }}" alt=""/>
+{%- endblock password_widget %}
+
+{% block email_widget -%}
+    {% set type = type|default('email') %}
+    {{- block('form_widget_simple') -}}
+    <img src="{{ asset('images/mail-16x16.png') }}" alt=""/>
+{%- endblock email_widget %}

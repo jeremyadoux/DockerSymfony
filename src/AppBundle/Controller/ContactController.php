@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jadoux
- * Date: 20/01/2015
- * Time: 16:25
- */
 
 namespace AppBundle\Controller;
-
 
 use AppBundle\Form\Model\SupportRequest;
 use AppBundle\Form\Type\SupportRequestType;
@@ -22,22 +15,25 @@ class ContactController extends Controller
 {
     /**
      * @param Request $request
-     *
+     * 
      * @Route("/contact", name="contact")
-     * @Method({"GET", "POST"})
+     * @Method({ "GET", "POST" })
      */
-    public function contactAction(Request $request) {
+    public function contactAction(Request $request)
+    {
         $support = new SupportRequest();
-        $form = $this->createForm(new SupportRequestType(), $support);
+        $form = $this->createForm('support_request', $support);
         $form->add('submit', 'submit');
-        $form->add('reset', 'reset');
         $form->handleRequest($request);
-
+        
         if ($form->isValid()) {
-            $this->get("support_request_handler")->handleSupportRequest($support);
-            $this->redirectToRoute("contact");
+            $this->get('support_request_handler')->handleSupportRequest($support);
+
+            return $this->redirectToRoute('contact');
         }
 
-        return $this->render('contact/support.html.twig', ['form' => $form->createView()]);
+        return $this->render('contact/support.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

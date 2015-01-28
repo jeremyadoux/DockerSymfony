@@ -19,6 +19,12 @@ class SupportRequestHandler
 
     public function __construct(\Swift_Mailer $mailer, $uploadDir, $recipient)
     {
+        if(isset($uploadDir) && !is_writable($uploadDir)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Directory %s does not exist or is not writable.',
+                $uploadDir
+            ));
+        }
         $this->mailer = $mailer;
         $this->uploadDir = $uploadDir;
         $this->recipient = $recipient;
